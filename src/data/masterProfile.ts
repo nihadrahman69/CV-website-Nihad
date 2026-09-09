@@ -6,15 +6,10 @@ export const masterProfile: MasterProfile = {
     location: "Dhaka, Bangladesh",
     nationality: "Bangladeshi",
     headline: "Software Engineering Student | Technology, Business & Analytical Thinking",
-    subheadline: "Versatile professional with a foundation in Software Engineering and Cybersecurity, combining analytical problem-solving with strong communication, organizational ability, and business awareness.",
-    cvDetails: {
-      dateOfBirth: "18 May 2003",
-      fullAddress: "258/1, West Shewrapara, Mirpur, Dhaka-1216",
-      religion: "Islam"
-    }
+    subheadline: "Versatile professional with a foundation in Software Engineering and Cybersecurity, combining analytical problem-solving with strong communication, organizational ability, and business awareness."
   },
   contact: {
-    email: "rahmannih59@gmail.com",
+    email: "rahmannih69@gmail.com",
     phoneNumbers: ["+8801829737802", "+8801308030370"],
     linkedin: "https://www.linkedin.com/in/nihad-rahman-rawdra/",
     github: "https://github.com/nihadrahman69",
@@ -52,9 +47,9 @@ export const masterProfile: MasterProfile = {
       organization: "Private Law Firm",
       duration: "6 months",
       responsibilities: [
-        "Supported routine office tasks, organization, and document handling in a private law firm",
-        "Worked with deed and land-related documents, including intermediate deed reading, correction, and statement writing",
-        "Worked in a professional office environment requiring careful handling of assigned responsibilities"
+        "Assisted with administrative tasks, organization, and daily office operations",
+        "Managed document handling including intermediate deed reading, correction, and statement writing",
+        "Demonstrated responsibility, reliability, and strong communication skills in a professional environment"
       ],
       transferableSkills: [
         "Communication",
@@ -72,9 +67,9 @@ export const masterProfile: MasterProfile = {
       id: "proj-1",
       name: "Supershop Management System",
       repoUrl: "https://github.com/nihadrahman69/Supershop-Management-System-C",
-      description: "A terminal-based supershop management project developed in C.",
+      description: "A terminal-based application developed to manage inventory, sales, and operations for a retail supershop.",
       technologies: ["C"],
-      transferableValue: "Shows how programming can be applied to a practical business-oriented project."
+      transferableValue: "Demonstrates practical application of programming to solve business and organizational operational challenges."
     },
     {
       id: "proj-2",
@@ -88,17 +83,33 @@ export const masterProfile: MasterProfile = {
       id: "proj-3",
       name: "Random Card Tossing Machine",
       repoUrl: "https://github.com/nihadrahman69/random-card-tossing-machine",
-      description: "A Python program built around random card-tossing simulation.",
+      description: "A program that simulates random probability models through card tossing mechanisms.",
       technologies: ["Python"],
-      transferableValue: "Demonstrates basic use of randomization and simulation logic."
+      transferableValue: "Demonstrates understanding of randomization, statistics, and simulation logic."
     },
     {
       id: "proj-4",
       name: "Random Dice",
       repoUrl: "https://github.com/nihadrahman69/Random-dice",
-      description: "A Python application that simulates dice rolling.",
+      description: "A dice rolling simulation application.",
       technologies: ["Python"],
       transferableValue: "Showcases basic utility development."
+    },
+    {
+      id: "proj-5",
+      name: "Roman to Integer Conversion (Vice Versa)",
+      repoUrl: "https://github.com/nihadrahman69/Roman-to-Integer-conversion-vice-versa",
+      description: "Two Java programs that perform bidirectional conversion between Roman numerals and integers.",
+      technologies: ["Java"],
+      transferableValue: "Demonstrates algorithmic thinking and string/number parsing logic in a statically typed language."
+    },
+    {
+      id: "proj-6",
+      name: "Intelligent Traffic Management System",
+      repoUrl: "https://github.com/nihadrahman69/Intelligent-Traffic-Management-System",
+      description: "A Java console application simulating an intelligent traffic light management system for urban intersections, with real-time signal monitoring, manual control, emergency vehicle prioritization, and sensor-based traffic simulation.",
+      technologies: ["Java"],
+      transferableValue: "Shows applied systems thinking — modeling real-world state machines, prioritization logic, and simulated sensor input in code."
     }
   ],
   technicalSkills: [
@@ -121,13 +132,12 @@ export const masterProfile: MasterProfile = {
     { name: "Responsibility" },
     { name: "Adaptability" },
     { name: "Business Awareness" },
-    { name: "AI-Assisted Productivity" },
-    { name: "Typing (45+ WPM)" }
+    { name: "AI-Assisted Productivity" }
   ],
   languages: [
     { name: "Bangla", spoken: "Proficient", written: "Proficient" },
     { name: "English", spoken: "Proficient", written: "Proficient" },
-    { name: "Hindi", spoken: "Spoken" }
+    { name: "Hindi", spoken: "Proficient" }
   ],
   professionalInterests: [
     "Business",

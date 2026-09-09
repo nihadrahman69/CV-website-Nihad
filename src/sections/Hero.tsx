@@ -2,6 +2,7 @@ import { ArrowRight, MapPin } from 'lucide-react';
 import Container from '../components/Container';
 import Button from '../components/Button';
 import { masterProfile } from '../data/masterProfile';
+import heroPhoto from '../assets/IMG_1424.jpeg';
 
 function Hero() {
   const { personal } = masterProfile;
@@ -19,7 +20,15 @@ function Hero() {
       />
 
       <Container className="flex min-h-[85vh] flex-col justify-center py-24 text-center sm:py-28">
-        <div className="mx-auto flex items-center gap-2 rounded-full border border-navy-600/60 bg-navy-850 px-4 py-1.5 text-xs font-medium text-ink-400 animate-[var(--animate-fade-in)]">
+        <img
+          src={heroPhoto}
+          alt={`Portrait of ${personal.name}`}
+          width={128}
+          height={128}
+          className="mx-auto h-28 w-28 shrink-0 rounded-full border-2 border-navy-600/60 object-cover shadow-lg sm:h-32 sm:w-32 animate-[var(--animate-fade-in)]"
+        />
+
+        <div className="mx-auto mt-6 flex items-center gap-2 rounded-full border border-navy-600/60 bg-navy-850 px-4 py-1.5 text-xs font-medium text-ink-400 animate-[var(--animate-fade-in)]">
           <MapPin size={14} className="text-accent-400" aria-hidden="true" />
           {personal.location}
         </div>
