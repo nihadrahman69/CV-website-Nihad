@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import Container from '../components/Container';
 import { masterProfile } from '../data/masterProfile';
 import { navLinks } from '../utils/navigation';
@@ -49,7 +49,7 @@ function Footer() {
               aria-label="LinkedIn"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-navy-600 text-ink-400 transition-colors hover:border-accent-400 hover:text-accent-300"
             >
-              <Linkedin size={15} aria-hidden="true" />
+              <span aria-hidden="true" className="text-xs font-bold">in</span>
             </a>
             <a
               href={contact.github}
@@ -58,7 +58,7 @@ function Footer() {
               aria-label="GitHub"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-navy-600 text-ink-400 transition-colors hover:border-accent-400 hover:text-accent-300"
             >
-              <Github size={15} aria-hidden="true" />
+              <span aria-hidden="true" className="text-xs font-bold">GH</span>
             </a>
           </div>
         </div>

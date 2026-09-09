@@ -1,4 +1,4 @@
-import { Facebook, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import Container from '../components/Container';
 import SectionHeading from '../components/SectionHeading';
 import IconLink from '../components/IconLink';
@@ -38,7 +38,7 @@ function Contact() {
           ))}
 
           <IconLink
-            icon={<Linkedin size={16} aria-hidden="true" />}
+            icon={<span aria-hidden="true">in</span>}
             href={contact.linkedin}
             target="_blank"
             rel="noopener noreferrer"
@@ -47,7 +47,7 @@ function Contact() {
           </IconLink>
 
           <IconLink
-            icon={<Github size={16} aria-hidden="true" />}
+            icon={<span aria-hidden="true">GH</span>}
             href={contact.github}
             target="_blank"
             rel="noopener noreferrer"
@@ -56,7 +56,7 @@ function Contact() {
           </IconLink>
 
           <IconLink
-            icon={<Facebook size={16} aria-hidden="true" />}
+            icon={<span aria-hidden="true">f</span>}
             href={contact.facebook}
             target="_blank"
             rel="noopener noreferrer"

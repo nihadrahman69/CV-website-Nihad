@@ -1,4 +1,4 @@
-import { MasterProfile } from '../types/profile';
+import type { MasterProfile } from '../types/profile';
 
 export const masterProfile: MasterProfile = {
   personal: {
