@@ -1,111 +1,182 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import "tailwindcss";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+/*
+  Design system tokens.
+  Tailwind v4 reads `--color-*`, `--font-*`, etc. from this @theme block and
+  generates matching utilities automatically (e.g. --color-navy-950 -> bg-navy-950).
+*/
+@theme {
+  /* Midnight navy / charcoal foundation */
+  --color-navy-950: #05070c;
+  --color-navy-900: #0a0e17;
+  --color-navy-850: #0d121e;
+  --color-navy-800: #121826;
+  --color-navy-700: #1a2233;
+  --color-navy-600: #232c40;
+  --color-navy-500: #313c54;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Neutral text scale */
+  --color-ink-50: #f5f7fb;
+  --color-ink-100: #e7eaf1;
+  --color-ink-300: #aab3c6;
+  --color-ink-400: #8993a8;
+  --color-ink-500: #6b7488;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+  /* Restrained blue accent */
+  --color-accent-300: #8fb0f0;
+  --color-accent-400: #6d97ea;
+  --color-accent-500: #4d7de0;
+  --color-accent-600: #3963c4;
+
+  /* Optional subtle gold accent, used sparingly */
+  --color-gold-300: #e3c988;
+  --color-gold-400: #cdab5e;
+  --color-gold-500: #b8944a;
+
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -16px rgba(0, 0, 0, 0.55);
+  --animate-fade-in: fade-in 0.5s ease-out both;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+/*
+  Light theme overrides.
+  Dark is the default palette defined in the @theme block above. When the
+  `light` class is present on <html> (see src/hooks/useTheme.ts), these
+  values override the same custom properties so every existing bg-navy-*,
+  text-ink-*, text-accent-* and text-gold-* utility repaints for a light
+  background without any component needing a `dark:`/`light:` variant.
+*/
+:root.light {
+  /* Page background/surface scale, lightest → most-visible border */
+  --color-navy-950: #ffffff;
+  --color-navy-900: #f8fafc;
+  --color-navy-850: #f1f5f9;
+  --color-navy-800: #e6eaf1;
+  --color-navy-700: #dbe1ea;
+  --color-navy-600: #c3cbd9;
+  --color-navy-500: #94a3b8;
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+  /* Text scale, most-contrast (headings) → least-contrast (meta text) */
+  --color-ink-50: #0f172a;
+  --color-ink-100: #1e293b;
+  --color-ink-300: #334155;
+  --color-ink-400: #475569;
+  --color-ink-500: #64748b;
+
+  /* Accent blue, tuned for readability on a light background */
+  --color-accent-300: #1e40af;
+  --color-accent-400: #1d4ed8;
+  --color-accent-500: #2563eb;
+  --color-accent-600: #1e3a8a;
+
+  /* Gold accent, deepened so it stays legible on light surfaces */
+  --color-gold-300: #92400e;
+  --color-gold-400: #b45309;
+  --color-gold-500: #d97706;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+/*
+  CV print page. `size: A4` standardises output across locales.
+  `margin: 0` suppresses browser-injected URL / date / page-number
+  chrome; the CV document supplies its own content margins via
+  Tailwind `print:px-[18mm] print:py-[14mm]` so the text is
+  never edge-to-edge. Users should still disable "Headers and
+  footers" in the print dialog for the cleanest result.
+*/
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  
+  /* Force all CV text and borders to pure black for high-contrast print */
+  .cv-document,
+  .cv-document * {
+    color: #000000 !important;
+    border-color: #000000 !important;
+  }
+  
+  .cv-document {
+    background: #ffffff !important;
   }
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {
   margin: 0;
+  background-color: var(--color-navy-950);
+  color: var(--color-ink-300);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+
+::selection {
+  background-color: var(--color-accent-600);
+  color: var(--color-ink-50);
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* Consistent, visible focus ring for keyboard users across the site */
+:focus-visible {
+  outline: 2px solid var(--color-accent-400);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* Utility used by the header's "skip to content" link */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 1rem;
 }
