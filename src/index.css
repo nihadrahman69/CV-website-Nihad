@@ -98,6 +98,22 @@ html.light {
   color-scheme: light;
 }
 
+/*
+  CV print page. `size` is left unset so the browser/OS default (A4 or
+  Letter, depending on locale/printer) is used rather than forcing one,
+  which avoids clipped/rescaled output for reviewers on the "wrong" size.
+*/
+@page {
+  margin: 12mm;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
