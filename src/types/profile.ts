@@ -3,6 +3,11 @@ export interface MasterProfile {
     name: string;
     location: string;
     nationality: string;
+    cvDetails?: {
+      dateOfBirth: string;
+      fullAddress: string;
+      religion: string;
+    };
     headline: string;
     subheadline: string;
   };

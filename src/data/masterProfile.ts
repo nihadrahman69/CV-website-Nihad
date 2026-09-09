@@ -6,7 +6,12 @@ export const masterProfile: MasterProfile = {
     location: "Dhaka, Bangladesh",
     nationality: "Bangladeshi",
     headline: "Software Engineering Student | Technology, Business & Analytical Thinking",
-    subheadline: "Versatile professional with a foundation in Software Engineering and Cybersecurity, combining analytical problem-solving with strong communication, organizational ability, and business awareness."
+    subheadline: "Versatile professional with a foundation in Software Engineering and Cybersecurity, combining analytical problem-solving with strong communication, organizational ability, and business awareness.",
+    cvDetails: {
+      dateOfBirth: "18 May 2003",
+      fullAddress: "258/1, West Shewrapara, Mirpur, Dhaka-1216",
+      religion: "Islam"
+    }
   },
   contact: {
     email: "rahmannih59@gmail.com",
@@ -47,9 +52,9 @@ export const masterProfile: MasterProfile = {
       organization: "Private Law Firm",
       duration: "6 months",
       responsibilities: [
-        "Assisted with administrative tasks, organization, and daily office operations",
-        "Managed document handling including intermediate deed reading, correction, and statement writing",
-        "Demonstrated responsibility, reliability, and strong communication skills in a professional environment"
+        "Supported routine office tasks, organization, and document handling in a private law firm",
+        "Worked with deed and land-related documents, including intermediate deed reading, correction, and statement writing",
+        "Worked in a professional office environment requiring careful handling of assigned responsibilities"
       ],
       transferableSkills: [
         "Communication",
@@ -67,9 +72,9 @@ export const masterProfile: MasterProfile = {
       id: "proj-1",
       name: "Supershop Management System",
       repoUrl: "https://github.com/nihadrahman69/Supershop-Management-System-C",
-      description: "A terminal-based application developed to manage inventory, sales, and operations for a retail supershop.",
+      description: "A terminal-based supershop management project developed in C.",
       technologies: ["C"],
-      transferableValue: "Demonstrates practical application of programming to solve business and organizational operational challenges."
+      transferableValue: "Shows how programming can be applied to a practical business-oriented project."
     },
     {
       id: "proj-2",
@@ -83,15 +88,15 @@ export const masterProfile: MasterProfile = {
       id: "proj-3",
       name: "Random Card Tossing Machine",
       repoUrl: "https://github.com/nihadrahman69/random-card-tossing-machine",
-      description: "A program that simulates random probability models through card tossing mechanisms.",
+      description: "A Python program built around random card-tossing simulation.",
       technologies: ["Python"],
-      transferableValue: "Demonstrates understanding of randomization, statistics, and simulation logic."
+      transferableValue: "Demonstrates basic use of randomization and simulation logic."
     },
     {
       id: "proj-4",
       name: "Random Dice",
       repoUrl: "https://github.com/nihadrahman69/Random-dice",
-      description: "A dice rolling simulation application.",
+      description: "A Python application that simulates dice rolling.",
       technologies: ["Python"],
       transferableValue: "Showcases basic utility development."
     }
@@ -116,12 +121,13 @@ export const masterProfile: MasterProfile = {
     { name: "Responsibility" },
     { name: "Adaptability" },
     { name: "Business Awareness" },
-    { name: "AI-Assisted Productivity" }
+    { name: "AI-Assisted Productivity" },
+    { name: "Typing (45+ WPM)" }
   ],
   languages: [
     { name: "Bangla", spoken: "Proficient", written: "Proficient" },
     { name: "English", spoken: "Proficient", written: "Proficient" },
-    { name: "Hindi", spoken: "Proficient" }
+    { name: "Hindi", spoken: "Spoken" }
   ],
   professionalInterests: [
     "Business",
