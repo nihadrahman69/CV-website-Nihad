@@ -1,41 +1,46 @@
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import CVDocument from '../components/cv/CVDocument';
+import ReactPDFDocument from '../components/cv/ReactPDFDocument';
+import { useTheme } from '../hooks/useTheme';
+import ThemeToggle from '../components/ThemeToggle';
 
 /**
- * Standalone CV generator page, reachable at `#cv` (see useHashRoute / App.tsx).
- * Renders the same CVDocument markup used for both the on-screen preview and
- * the printed PDF, so there's no risk of the preview and the download drifting
- * apart. "Download PDF" uses the browser's native print-to-PDF pipeline
- * (see the `print:` styles in CVDocument and the @page rule in index.css)
- * instead of a canvas/screenshot library, which is what keeps the PDF's text
- * genuinely selectable and searchable.
+ * Standalone CV page, reachable at `#cv` (see useHashRoute / App.tsx).
+ *
+ * Renders the CVDocument markup for on-screen preview.
+ * The Download button uses @react-pdf/renderer for vector PDF generation.
  */
 function CVPage() {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="sticky top-0 z-10 border-b border-gray-200 bg-white/95 backdrop-blur print:hidden">
-        <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
+    <div className="min-h-screen bg-navy-950 print:bg-white">
+      {/* ── Toolbar (hidden in print) ─────────────────── */}
+      <div className="sticky top-0 z-10 border-b border-navy-800 bg-navy-950/95 backdrop-blur print:hidden">
+        <div className="mx-auto flex max-w-[780px] flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <a
             href="#home"
-            className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
+            className="text-sm font-medium text-ink-400 transition-colors hover:text-ink-100"
           >
             ← Back to portfolio
           </a>
 
-          <div className="flex items-center gap-3">
-            <p className="hidden text-xs text-gray-500 sm:block">
-              Preview below, then download the PDF.
-            </p>
-            <button
-              type="button"
-              onClick={() => window.print()}
-              className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+          <div className="flex items-center gap-4">
+            <ThemeToggle theme={theme} onToggle={toggleTheme} />
+            
+            <PDFDownloadLink
+              document={<ReactPDFDocument />}
+              fileName="Nihad_Rahman_Rawdra_CV.pdf"
+              className="rounded-lg bg-accent-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
             >
-              Download PDF
-            </button>
+              {/* @ts-ignore */}
+              {({ loading }) => (loading ? 'Generating PDF...' : 'Download CV (PDF)')}
+            </PDFDownloadLink>
           </div>
         </div>
       </div>
 
+      {/* ── CV Preview ────────────────────────────────── */}
       <div className="py-6 sm:py-10 print:py-0">
         <CVDocument />
       </div>

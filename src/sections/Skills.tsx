@@ -3,6 +3,7 @@ import SectionHeading from '../components/SectionHeading';
 import Card from '../components/Card';
 import Badge from '../components/Badge';
 import { masterProfile } from '../data/masterProfile';
+import { getTechTextColor } from '../utils/techColors';
 
 function Skills() {
   const { technicalSkills, additionalSkills, aiTools } = masterProfile;
@@ -28,7 +29,9 @@ function Skills() {
               </h3>
               <div className="mt-4 flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
-                  <Badge key={skill}>{skill}</Badge>
+                  <Badge key={skill} className={getTechTextColor(skill)}>
+                    {skill}
+                  </Badge>
                 ))}
               </div>
             </Card>

@@ -99,17 +99,33 @@ html.light {
 }
 
 /*
-  CV print page. `size` is left unset so the browser/OS default (A4 or
-  Letter, depending on locale/printer) is used rather than forcing one,
-  which avoids clipped/rescaled output for reviewers on the "wrong" size.
+  CV print page. `size: A4` standardises output across locales.
+  `margin: 0` suppresses browser-injected URL / date / page-number
+  chrome; the CV document supplies its own content margins via
+  Tailwind `print:px-[18mm] print:py-[14mm]` so the text is
+  never edge-to-edge. Users should still disable "Headers and
+  footers" in the print dialog for the cleanest result.
 */
 @page {
-  margin: 12mm;
+  size: A4;
+  margin: 0;
 }
 
 @media print {
   html,
   body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  
+  /* Force all CV text and borders to pure black for high-contrast print */
+  .cv-document,
+  .cv-document * {
+    color: #000000 !important;
+    border-color: #000000 !important;
+  }
+  
+  .cv-document {
     background: #ffffff !important;
   }
 }

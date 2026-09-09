@@ -4,6 +4,7 @@ import SectionHeading from '../components/SectionHeading';
 import Card from '../components/Card';
 import Badge from '../components/Badge';
 import { masterProfile } from '../data/masterProfile';
+import { getTechTextColor } from '../utils/techColors';
 
 function Projects() {
   const { projects } = masterProfile;
@@ -49,7 +50,9 @@ function Projects() {
 
               <div className="mt-5 flex flex-wrap gap-2 pt-1">
                 {project.technologies.map((tech) => (
-                  <Badge key={tech}>{tech}</Badge>
+                  <Badge key={tech} className={getTechTextColor(tech)}>
+                    {tech}
+                  </Badge>
                 ))}
               </div>
             </Card>
