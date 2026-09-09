@@ -1,21 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import Container from '../components/Container';
+import ThemeToggle from '../components/ThemeToggle';
+import { useTheme } from '../hooks/useTheme';
 import { masterProfile } from '../data/masterProfile';
 import { navLinks } from '../utils/navigation';
-
-function initials(name: string) {
-  return name
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join('')
-    .toUpperCase();
-}
+import heroPhoto from '../assets/IMG_1424.jpeg';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   // Close the mobile menu on Escape and whenever the viewport grows back to desktop size.
   useEffect(() => {
@@ -45,9 +39,13 @@ function Header() {
             className="flex items-center gap-3 text-sm font-semibold text-ink-100"
             aria-label={`${masterProfile.personal.name} — go to top`}
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-500/15 text-sm font-bold text-accent-300 ring-1 ring-inset ring-accent-500/30">
-              {initials(masterProfile.personal.name)}
-            </span>
+            <img
+              src={heroPhoto}
+              alt=""
+              width={36}
+              height={36}
+              className="h-9 w-9 shrink-0 rounded-full object-cover ring-1 ring-inset ring-accent-500/30"
+            />
             <span className="hidden sm:inline">{masterProfile.personal.name}</span>
           </a>
 
@@ -66,23 +64,29 @@ function Header() {
             </ul>
           </nav>
 
-          <a
-            href="#contact"
-            className="hidden rounded-lg bg-accent-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-600 md:inline-flex"
-          >
-            Get in touch
-          </a>
+          <div className="flex items-center gap-2">
+            <ThemeToggle theme={theme} onToggle={toggleTheme} className="hidden md:inline-flex" />
 
-          <button
-            type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-ink-200 md:hidden"
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-nav"
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-            onClick={() => setIsMenuOpen((open) => !open)}
-          >
-            {isMenuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
-          </button>
+            <a
+              href="#contact"
+              className="hidden rounded-lg bg-accent-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-600 md:inline-flex"
+            >
+              Get in touch
+            </a>
+
+            <ThemeToggle theme={theme} onToggle={toggleTheme} className="md:hidden" />
+
+            <button
+              type="button"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-md text-ink-200 md:hidden"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-nav"
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              onClick={() => setIsMenuOpen((open) => !open)}
+            >
+              {isMenuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+            </button>
+          </div>
         </div>
       </Container>
 

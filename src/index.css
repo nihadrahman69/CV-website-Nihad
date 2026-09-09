@@ -52,8 +52,50 @@
   }
 }
 
+/*
+  Light theme overrides.
+  Dark is the default palette defined in the @theme block above. When the
+  `light` class is present on <html> (see src/hooks/useTheme.ts), these
+  values override the same custom properties so every existing bg-navy-*,
+  text-ink-*, text-accent-* and text-gold-* utility repaints for a light
+  background without any component needing a `dark:`/`light:` variant.
+*/
+:root.light {
+  /* Page background/surface scale, lightest → most-visible border */
+  --color-navy-950: #ffffff;
+  --color-navy-900: #f8fafc;
+  --color-navy-850: #f1f5f9;
+  --color-navy-800: #e6eaf1;
+  --color-navy-700: #dbe1ea;
+  --color-navy-600: #c3cbd9;
+  --color-navy-500: #94a3b8;
+
+  /* Text scale, most-contrast (headings) → least-contrast (meta text) */
+  --color-ink-50: #0f172a;
+  --color-ink-100: #1e293b;
+  --color-ink-300: #334155;
+  --color-ink-400: #475569;
+  --color-ink-500: #64748b;
+
+  /* Accent blue, tuned for readability on a light background */
+  --color-accent-300: #1e40af;
+  --color-accent-400: #1d4ed8;
+  --color-accent-500: #2563eb;
+  --color-accent-600: #1e3a8a;
+
+  /* Gold accent, deepened so it stays legible on light surfaces */
+  --color-gold-300: #92400e;
+  --color-gold-400: #b45309;
+  --color-gold-500: #d97706;
+}
+
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -74,6 +116,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
 }
 
 ::selection {
