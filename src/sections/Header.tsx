@@ -65,27 +65,31 @@ function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <ThemeToggle theme={theme} onToggle={toggleTheme} className="hidden md:inline-flex" />
+            {/* Desktop Actions */}
+            <div className="hidden items-center gap-2 md:flex">
+              <ThemeToggle theme={theme} onToggle={toggleTheme} />
+              <a
+                href="#contact"
+                className="rounded-lg bg-accent-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-600"
+              >
+                Get in touch
+              </a>
+            </div>
 
-            <a
-              href="#contact"
-              className="hidden rounded-lg bg-accent-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-600 md:inline-flex"
-            >
-              Get in touch
-            </a>
-
-            <ThemeToggle theme={theme} onToggle={toggleTheme} className="md:hidden" />
-
-            <button
-              type="button"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-md text-ink-200 md:hidden"
-              aria-expanded={isMenuOpen}
-              aria-controls="mobile-nav"
-              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-              onClick={() => setIsMenuOpen((open) => !open)}
-            >
-              {isMenuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
-            </button>
+            {/* Mobile Actions */}
+            <div className="flex items-center gap-1 md:hidden">
+              <ThemeToggle theme={theme} onToggle={toggleTheme} />
+              <button
+                type="button"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-md text-ink-200"
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-nav"
+                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                onClick={() => setIsMenuOpen((open) => !open)}
+              >
+                {isMenuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+              </button>
+            </div>
           </div>
         </div>
       </Container>

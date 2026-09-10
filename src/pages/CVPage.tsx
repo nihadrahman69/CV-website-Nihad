@@ -32,6 +32,18 @@ function CVPage() {
               document={<ReactPDFDocument />}
               fileName="Nihad_Rahman_Rawdra_CV.pdf"
               className="rounded-lg bg-accent-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
+              onClick={(e) => {
+                const isInAppBrowser = /FBAN|FBAV|Messenger|Instagram|LinkedInApp/i.test(navigator.userAgent);
+                if (isInAppBrowser) {
+                  e.preventDefault();
+                  const blobUrl = e.currentTarget.href;
+                  if (blobUrl && blobUrl.startsWith('blob:')) {
+                    window.open(blobUrl, '_blank');
+                  } else {
+                    alert('Download blocked by in-app browser. Please tap the menu (•••) and select "Open in External Browser" (Chrome/Safari) to download.');
+                  }
+                }
+              }}
             >
               {/* @ts-ignore */}
               {({ loading }) => (loading ? 'Generating PDF...' : 'Download CV (PDF)')}
