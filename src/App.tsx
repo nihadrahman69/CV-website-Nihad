@@ -6,6 +6,7 @@ import Projects from './sections/Projects';
 import Skills from './sections/Skills';
 import Languages from './sections/Languages';
 import Contact from './sections/Contact';
+import DownloadCV from './sections/DownloadCV';
 import Footer from './sections/Footer';
 import CVPage from './pages/CVPage';
 import { useHashRoute } from './hooks/useHashRoute';
@@ -38,6 +39,7 @@ function App() {
           <Skills />
           <Languages />
           <Contact />
+          <DownloadCV />
         </main>
         <Footer />
       </>
